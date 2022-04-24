@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Sotrudniki</string>
+    <string name="Login">Username</string>
+    <string name="Password">Password</string>
+    <string name="Enter">Log in</string>
+    <string name="Autoriz">Sign in</string>
+</resources>
