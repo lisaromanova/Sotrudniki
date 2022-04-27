@@ -5,5 +5,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PositionsActivity">
+    <EditText
+        android:id="@+id/Nazvanie"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:hint="@string/Nazvanie"
+        android:textSize="10pt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/Discharge"/>
 
+    <EditText
+        android:id="@+id/Discharge"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:hint="@string/disc"
+        android:textSize="10pt"
+        app:layout_constraintEnd_toStartOf="@id/Salary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Nazvanie"
+        app:layout_constraintBottom_toTopOf="@id/btnAdd"/>
+    <EditText
+        android:id="@+id/Salary"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:hint="@string/salary"
+        android:textSize="10pt"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/Discharge"
+        app:layout_constraintTop_toBottomOf="@+id/Nazvanie"
+        app:layout_constraintBottom_toTopOf="@id/btnClear"/>
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="@string/add"
+        app:layout_constraintEnd_toStartOf="@+id/btnClear"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Discharge"
+        app:layout_constraintBottom_toTopOf="@id/dbOutput"/>
+
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="@string/clear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnAdd"
+        app:layout_constraintTop_toBottomOf="@id/Salary"
+        app:layout_constraintBottom_toTopOf="@id/dbOutput"/>
+
+    <TableLayout
+        android:id="@+id/dbOutput"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnClear">
+
+    </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

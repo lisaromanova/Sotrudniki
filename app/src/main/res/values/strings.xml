@@ -8,4 +8,9 @@
     <string name="STAFF">Сотрудники</string>
     <string name="POSITIONS">Должности</string>
     <string name="Open">Открыть</string>
+    <string name="Nazvanie">Название</string>
+    <string name="disc">Разряд</string>
+    <string name="salary">Оклад</string>
+    <string name="add">Добавить</string>
+    <string name="clear">Очистить</string>
 </resources>
