@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/soika/AndroidStudioProjects/Sotrudniki/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/soika/AndroidStudioProjects/Sotrudniki/app/src/main/res/layout/activity_menu.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/soika/AndroidStudioProjects/Sotrudniki/app/src/main/res/layout/activity_positions.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/soika/AndroidStudioProjects/Sotrudniki/app/src/main/res/layout/activity_staff.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/soika/AndroidStudioProjects/Sotrudniki/app/src/main/res/layout/activity_trips.xml" value="0.358695652173913" />
       </map>
     </option>
   </component>

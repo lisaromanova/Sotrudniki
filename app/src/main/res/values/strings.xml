@@ -4,4 +4,8 @@
     <string name="Password">Password</string>
     <string name="Enter">Log in</string>
     <string name="Autoriz">Sign in</string>
+    <string name="BUSINESS_TRIPS">Командировки</string>
+    <string name="STAFF">Сотрудники</string>
+    <string name="POSITIONS">Должности</string>
+    <string name="Open">Открыть</string>
 </resources>

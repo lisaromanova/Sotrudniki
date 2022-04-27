@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sotrudniki">
         <activity
+            android:name=".PositionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TripsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StaffActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
