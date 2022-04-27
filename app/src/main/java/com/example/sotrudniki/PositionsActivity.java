@@ -35,9 +35,9 @@ public class PositionsActivity extends AppCompatActivity implements View.OnClick
         btnClear = (Button) findViewById(R.id.btnClear);
         btnClear.setOnClickListener(this);
 
-        etName = findViewById(R.id.Nazvanie);
-        etSalary = findViewById(R.id.Salary);
-        etDisc = findViewById(R.id.Discharge);
+        etName = findViewById(R.id.Sotrudnik);
+        etSalary = findViewById(R.id.City);
+        etDisc = findViewById(R.id.Size);
 
         dbHelper = new DBHelper(this);
         database = dbHelper.getWritableDatabase();
@@ -62,6 +62,7 @@ public class PositionsActivity extends AppCompatActivity implements View.OnClick
             else
                 etDisc.setHint("Разряд");
         });
+        UpdateTable();
     }
     public void UpdateTable() {
         Cursor cursor = database.query(DBHelper.TABLE_POSITIONS, null, null, null, null, null, null);
@@ -69,9 +70,8 @@ public class PositionsActivity extends AppCompatActivity implements View.OnClick
         if (cursor.moveToFirst()) {
             int idIndex = cursor.getColumnIndex(DBHelper.KEY_ID_POSITIONS);
             int nameIndex = cursor.getColumnIndex(DBHelper.KEY_TITLE);
-            int discIndex = cursor.getColumnIndex(DBHelper.KEY_SALARY);
             int salaryIndex = cursor.getColumnIndex(DBHelper.KEY_DISCHARGE);
-
+            int discIndex = cursor.getColumnIndex(DBHelper.KEY_SALARY);
 
             TableLayout dbOutput = findViewById(R.id.dbOutput);
             dbOutput.removeAllViews();
@@ -126,12 +126,13 @@ public class PositionsActivity extends AppCompatActivity implements View.OnClick
 
             case R.id.btnAdd:
                 String name = etName.getText().toString();
-                int salary = Integer.parseInt(etSalary.getText().toString());
                 int disc = Integer.parseInt(etDisc.getText().toString());
+                int salary = Integer.parseInt(etSalary.getText().toString());
+
                 contentValues = new ContentValues();
                 contentValues.put(DBHelper.KEY_TITLE, name);
-                contentValues.put(DBHelper.KEY_SALARY, salary);
                 contentValues.put(DBHelper.KEY_DISCHARGE, disc);
+                contentValues.put(DBHelper.KEY_SALARY, salary);
                 database.insert(DBHelper.TABLE_POSITIONS, null, contentValues);
                 UpdateTable();
                 etName.setText("");
@@ -159,15 +160,17 @@ public class PositionsActivity extends AppCompatActivity implements View.OnClick
                 if(cursorUpdater.moveToFirst()) {
                     int idIndex = cursorUpdater.getColumnIndex(DBHelper.KEY_ID_POSITIONS);
                     int nameIndex = cursorUpdater.getColumnIndex(DBHelper.KEY_TITLE);
-                    int surnameIndex = cursorUpdater.getColumnIndex(DBHelper.KEY_DISCHARGE);
                     int discIndex = cursorUpdater.getColumnIndex(DBHelper.KEY_SALARY);
+                    int surnameIndex = cursorUpdater.getColumnIndex(DBHelper.KEY_DISCHARGE);
+
                     int realID = 1;
                     do {
                         if (cursorUpdater.getInt(idIndex) > realID) {
                             contentValues.put(DBHelper.KEY_ID_POSITIONS, realID);
                             contentValues.put(DBHelper.KEY_TITLE, cursorUpdater.getString(surnameIndex));
-                            contentValues.put(DBHelper.KEY_DISCHARGE, cursorUpdater.getString(nameIndex));
                             contentValues.put(DBHelper.KEY_SALARY, cursorUpdater.getString(discIndex));
+                            contentValues.put(DBHelper.KEY_DISCHARGE, cursorUpdater.getString(nameIndex));
+
 
                             database.replace(DBHelper.TABLE_POSITIONS, null, contentValues);
                         }

@@ -12,5 +12,12 @@
     <string name="disc">Разряд</string>
     <string name="salary">Оклад</string>
     <string name="add">Добавить</string>
+    <string name="Surname">Фамилиия</string>
+    <string name="FirstName">Имя</string>
+    <string name="LastName">Отчество</string>
+    <string name="Pos">Должность</string>
     <string name="clear">Очистить</string>
+    <string name="Sotrudnik">Сотрудник</string>
+    <string name="City">Город</string>
+    <string name="Size">Размер суточных</string>
 </resources>
