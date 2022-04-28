@@ -8,8 +8,8 @@
 
     <EditText
         android:id="@+id/Login"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="344dp"
+        android:layout_height="47dp"
         android:layout_marginTop="250dp"
         android:hint="@string/Login"
         android:textSize="10pt"
@@ -19,7 +19,7 @@
 
     <EditText
         android:id="@+id/Password"
-        android:layout_width="300dp"
+        android:layout_width="344dp"
         android:layout_height="50dp"
         android:layout_marginTop="25dp"
         android:hint="@string/Password"
@@ -32,8 +32,8 @@
 
     <Button
         android:id="@+id/btnEnter"
-        android:layout_width="140dp"
-        android:layout_height="55dp"
+        android:layout_width="137dp"
+        android:layout_height="54dp"
         android:layout_marginTop="25dp"
         android:text="@string/Enter"
         app:layout_constraintStart_toStartOf="@+id/Password"
@@ -41,10 +41,11 @@
 
     <Button
         android:id="@+id/btnSign"
-        android:layout_width="140dp"
+        android:layout_width="192dp"
         android:layout_height="55dp"
         android:layout_marginTop="25dp"
         android:text="@string/Autoriz"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/Password"
         app:layout_constraintTop_toBottomOf="@+id/Password" />
 </androidx.constraintlayout.widget.ConstraintLayout>

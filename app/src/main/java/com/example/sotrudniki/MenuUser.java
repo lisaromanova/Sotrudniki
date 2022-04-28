@@ -2,21 +2,17 @@ package com.example.sotrudniki;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
+public class MenuUser extends AppCompatActivity implements View.OnClickListener {
     Button btnStaff, btnTrips, btnPositions, btnUpdate;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_menu_user);
         btnStaff = findViewById(R.id.btnStaff);
         btnTrips = findViewById(R.id.btnTrips);
         btnPositions = findViewById(R.id.btnPositions);
@@ -26,7 +22,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         btnPositions.setOnClickListener(this);
         btnUpdate.setOnClickListener(this);
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -41,7 +36,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, PositionsActivity.class));
                 break;
             case R.id.btnUpdate:
-                startActivity(new Intent(this, Users.class));
+                startActivity(new Intent(this, UpdateUser.class));
                 break;
 
         }

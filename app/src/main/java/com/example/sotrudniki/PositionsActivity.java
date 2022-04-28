@@ -105,11 +105,13 @@ public class PositionsActivity extends AppCompatActivity implements View.OnClick
                 outputDisc.setText(cursor.getString(salaryIndex));
                 dbOutputRow.addView(outputDisc);
 
+
+
                 Button deleteBtn = new Button(this);
                 deleteBtn.setOnClickListener(this);
                 params.weight=1.0f;
                 deleteBtn.setLayoutParams(params);
-                deleteBtn.setText("Удалить запись");
+                deleteBtn.setText("Удалить");
                 deleteBtn.setId(cursor.getInt(idIndex));
                 dbOutputRow.addView(deleteBtn);
 
@@ -153,6 +155,7 @@ public class PositionsActivity extends AppCompatActivity implements View.OnClick
                 ViewGroup outputDB = (ViewGroup) outputDBRow.getParent();
                 outputDB.removeView(outputDBRow);
                 outputDB.invalidate();
+
 
                 database.delete(DBHelper.TABLE_POSITIONS, DBHelper.KEY_ID_POSITIONS+" = ?", new String[]{String.valueOf((v.getId()))});
                 contentValues = new ContentValues();

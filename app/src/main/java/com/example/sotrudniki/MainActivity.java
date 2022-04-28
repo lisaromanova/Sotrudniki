@@ -13,101 +13,121 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    Button btnEnter, btnSign;
-    EditText username, password;
+    EditText usernameField, passwordField;
+    Button loginBtn, passwordBtn;
 
     DBHelper dbHelper;
     SQLiteDatabase database;
+
     String adminUser = "admin";
     String adminPassword = "admin";
 
+    public static String user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnEnter = (Button) findViewById(R.id.btnEnter);
-        btnEnter.setOnClickListener(this);
+        usernameField = findViewById(R.id.Login);
+        passwordField = findViewById(R.id.Password);
 
-
-        btnSign = (Button) findViewById(R.id.btnSign);
-        btnSign.setOnClickListener(this);
-
-
-        username = findViewById(R.id.Login);
-        password = findViewById(R.id.Password);
+        loginBtn = findViewById(R.id.btnEnter);
+        loginBtn.setOnClickListener(this);
+        passwordBtn = findViewById(R.id.btnSign);
+        passwordBtn.setOnClickListener(this);
 
         dbHelper = new DBHelper(this);
         database = dbHelper.getWritableDatabase();
 
-        username.setOnFocusChangeListener((v, hasFocus) -> {
+        usernameField.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus)
-                username.setHint("");
+                usernameField.setHint("");
             else
-                username.setHint("Username");
-        });
-        password.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus)
-                password.setHint("");
-            else
-                password.setHint("Password");
+                usernameField.setHint("Логин");
         });
 
-        ContentValues contentValues = new ContentValues();
-
-        contentValues.put(DBHelper.KEY_LOGIN, adminUser);
-        contentValues.put(DBHelper.KEY_PASSWORD, adminPassword);
-
-        database.insert(DBHelper.TABLE_USERS, null, contentValues);
+        passwordField.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus)
+                passwordField.setHint("");
+            else
+                passwordField.setHint("Пароль");
+        });
+        admin();
     }
-
-
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-
+    public void onClick(View view){
+        switch (view.getId()){
             case R.id.btnEnter:
-                Cursor loginCursor = database.query(DBHelper.TABLE_USERS, null, null, null, null, null, null);
+                Cursor logCursor = database.query(DBHelper.TABLE_USERS, null, null, null, null, null, null);
+
                 boolean logged = false;
-                if (loginCursor.moveToFirst()) {
-
-                    int usernameIndex = loginCursor.getColumnIndex(DBHelper.KEY_LOGIN);
-                    int passwordIndex = loginCursor.getColumnIndex(DBHelper.KEY_PASSWORD);
-                    do {
-
-                        if(username.getText().toString().equals(loginCursor.getString(usernameIndex)) && password.getText().toString().equals(loginCursor.getString(passwordIndex))){
+                if(logCursor.moveToFirst()){
+                    int usernameIndex = logCursor.getColumnIndex(DBHelper.KEY_LOGIN);
+                    int passwordIndex = logCursor.getColumnIndex(DBHelper.KEY_PASSWORD);
+                    do{
+                        if(usernameField.getText().toString().equals(adminUser) && passwordField.getText().toString().equals(adminPassword)) {
                             startActivity(new Intent(this, MenuActivity.class));
+                            finish();
                             logged = true;
                             break;
                         }
-                    } while (loginCursor.moveToNext());
+                        if(usernameField.getText().toString().equals(logCursor.getString(usernameIndex)) && passwordField.getText().toString().equals(logCursor.getString(passwordIndex))){
+                            user = logCursor.getString(usernameIndex);
+                            startActivity(new Intent(this, MenuUser.class));
+                            finish();
+                            logged = true;
+                            break;
+                        }
+                    }while (logCursor.moveToNext());
                 }
-                loginCursor.close();
-                if (!logged)
-                    Toast.makeText(this, "Введенная комбинация логина и пароля не была найдена", Toast.LENGTH_LONG).show();
+                logCursor.close();
+                if(!logged) Toast.makeText(this, "Введённая комбинация логина и пароля не была найдена", Toast.LENGTH_LONG).show();
                 break;
             case R.id.btnSign:
                 Cursor signCursor = database.query(DBHelper.TABLE_USERS, null, null, null, null, null, null);
+
                 boolean finded = false;
-                if (signCursor.moveToFirst()) {
+                if(signCursor.moveToFirst()){
                     int usernameIndex = signCursor.getColumnIndex(DBHelper.KEY_LOGIN);
-                    do {
-                        if (username.getText().toString().equals(signCursor.getString(usernameIndex))) {
-                            Toast.makeText(this, "Введеный вами логин уже зарегистрирован", Toast.LENGTH_LONG).show();
+                    do{
+                        if(usernameField.getText().toString().equals(signCursor.getString(usernameIndex))){
+                            Toast.makeText(this, "Введённый логин уже зарегистрирован", Toast.LENGTH_LONG).show();
                             finded = true;
                             break;
                         }
-                    } while (signCursor.moveToNext());
+                    }while (signCursor.moveToNext());
                 }
-                if (!finded) {
+                if(!finded){
                     ContentValues contentValues = new ContentValues();
-                    contentValues.put(DBHelper.KEY_LOGIN, username.getText().toString());
-                    contentValues.put(DBHelper.KEY_PASSWORD, password.getText().toString());
+                    contentValues.put(DBHelper.KEY_LOGIN, usernameField.getText().toString());
+                    contentValues.put(DBHelper.KEY_PASSWORD, passwordField.getText().toString());
                     database.insert(DBHelper.TABLE_USERS, null, contentValues);
-                    Toast.makeText(this, "Вы успешно зарегистрировались!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Вы успешно зарегистрированы", Toast.LENGTH_LONG).show();
                 }
                 signCursor.close();
                 break;
-
         }
+    }
+    public void admin(){
+        Cursor signCursor = database.query(DBHelper.TABLE_USERS, null, null, null, null, null, null);
+
+        int proverkaAdmin = 0;
+        if(signCursor.moveToFirst()){
+            int usernameIndex = signCursor.getColumnIndex(DBHelper.KEY_LOGIN);
+            do{
+                if(adminUser.equals(signCursor.getString(usernameIndex))){
+                    proverkaAdmin ++;
+                    break;
+                }
+            }while (signCursor.moveToNext());
+        }
+        if(proverkaAdmin==0){
+            ContentValues contentValues = new ContentValues();
+
+            contentValues.put(DBHelper.KEY_LOGIN, adminUser);
+            contentValues.put(DBHelper.KEY_PASSWORD, adminPassword);
+
+            database.insert(DBHelper.TABLE_USERS, null, contentValues);
+        }
+        signCursor.close();
     }
 }

@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Sotrudniki</string>
-    <string name="Login">Username</string>
-    <string name="Password">Password</string>
-    <string name="Enter">Log in</string>
-    <string name="Autoriz">Sign in</string>
+    <string name="app_name">Командировки</string>
+    <string name="Login">Логин</string>
+    <string name="Password">Пароль</string>
+    <string name="Enter">Войти</string>
+    <string name="Autoriz">Зарегестрироваться</string>
     <string name="BUSINESS_TRIPS">Командировки</string>
     <string name="STAFF">Сотрудники</string>
     <string name="POSITIONS">Должности</string>
@@ -20,4 +20,8 @@
     <string name="Sotrudnik">Сотрудник</string>
     <string name="City">Город</string>
     <string name="Size">Размер суточных</string>
+    <string name="Users">Радактирование пользователей</string>
+    <string name="Users1">Радактирование профиля</string>
+    <string name="Save">Сохранить</string>
+    <string name="Delete">Удалить</string>
 </resources>

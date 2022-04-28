@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sotrudniki">
         <activity
+            android:name=".UpdateUser"
+            android:exported="false" />
+        <activity
+            android:name=".MenuUser"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateUserAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".Users"
+            android:exported="false" />
+        <activity
             android:name=".PositionsActivity"
             android:exported="false" />
         <activity
